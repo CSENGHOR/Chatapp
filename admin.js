@@ -14,7 +14,7 @@ router.get('/rooms', function (req, res) {
 });
 
 router.route('/rooms/add')
-    get(function (req, res) {
+    .get(function (req, res) {
         res.render("add");
 })
     .post(function (req, res) {
@@ -29,7 +29,7 @@ router.route('/rooms/add')
 });
 
 router.route('/rooms/edit/:id')
-    get(function (req, res) {
+    .get(function (req, res) {
         var roomId = req.params.id;
         var room = _.find(rooms, r => r.id === roomId);
         if(!room){

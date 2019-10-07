@@ -13,6 +13,7 @@
     "bootstrap": "^3.4.1",
     "express": "^4.17.1",
     "jade": "^1.11.0",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "node-uuid": "^1.4.8"
   }
