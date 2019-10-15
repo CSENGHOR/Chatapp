@@ -1,6 +1,5 @@
 var express = require("express");
 var app = express();
-
 var bodyParser = require("body-parser");
 
 app.set("views", "./views");
@@ -10,10 +9,11 @@ app.use(express.static("public"));
 app.use(express.static("node_modules/bootstrap/dist"));
 app.use(express.static("node_modules/jquery/dist"));
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended:   true }));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-    res.render("home", {title: "Home"});
+    res.render("home", { title: "Home"});
 });
 
 var adminRouter = require("./admin");
