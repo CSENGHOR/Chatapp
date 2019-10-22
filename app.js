@@ -13,21 +13,30 @@ app.use(express.static("public"));
 app.use(express.static("node_modules/bootstrap/dist"));
 app.use(express.static("node_modules/jquery/dist"));
 
-app.use(bodyParser.urlencoded({ extended:   true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(require('express-session')({
     secret: 'keyboard cat', resave: false, saveUninitialized: false
-}))
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', function (req, res) {
-    res.render("home", { title: "Home"});
-});
-
 var authRouter = require("./auth");
 app.use(authRouter);
+
+app.use(function (req, res, next) {
+    if (req.isAuthenticated()) {
+      res.locals.user = req.user;
+      next();
+      return;
+    }
+    res.redirect("/login");
+  });
+
+app.get('/', function (req, res) {
+    res.render("home", {title: "Home"});
+});
 
 var adminRouter = require("./admin");
 app.use("/admin", adminRouter);
