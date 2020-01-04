@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
   });
 
 app.get('/', function (req, res) {
-    res.render("home", {title: "Home"});
+    res.render("home", {title: "Chatapp - Home"});
 });
 
 var adminRouter = require("./admin");
